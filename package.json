@@ -1,0 +1,16 @@
+{
+	"name": "commandler",
+	"version": "1.0.0",
+	"description": "Simple command framework for discord.js",
+	"private": true,
+	"eslintConfig": {
+		"extends": "lloti"
+	},
+	"dependencies": {
+		"discord.js": "github:hydrabolt/discord.js",
+		"sequelize": "*"
+	},
+	"devDependencies": {
+		"eslint-config-lloti": "lloti/eslint-config-lloti"
+	}
+}
