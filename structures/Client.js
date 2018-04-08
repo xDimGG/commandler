@@ -35,6 +35,7 @@ class Client extends _Client {
 				clientPerms: 'I don\'t have permissions to execute this command.',
 				memberPerms: 'You aren\'t authorized to execute this command.',
 				rateLimit: 'You can\'t use this command for another {time} second{s}.',
+				invalidUsage: 'Invalid usage! Please do `{usage}`.',
 				...options.messages,
 			},
 		});
@@ -111,9 +112,17 @@ class Client extends _Client {
 		if (message.mentions.members.size > 1)
 			message.mentions.members.delete(this.client.user.id);
 
+		const invalidUsage = () => message.channel.send(this.options.messages.invalid.replace('{usage}', `${message.prefix}${command.name} ${command.usage}`));
+
+		if (!args.length && command.usage.includes('<'))
+			return invalidUsage();
+
 		try {
 			message.prefix = prefix;
-			await command.run(message, args);
+			const successful = await command.run(message, args);
+
+			if (successful === false)
+				return invalidUsage();
 		} catch (error) {
 			this.logger.error(`${command.name}\n${error.stack || error}`);
 
