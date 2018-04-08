@@ -112,7 +112,7 @@ class Client extends _Client {
 		if (message.mentions.members.size > 1)
 			message.mentions.members.delete(this.client.user.id);
 
-		const invalidUsage = () => message.channel.send(this.options.messages.invalidUsage.replace('{usage}', `${message.prefix}${command.name} ${command.usage}`));
+		const invalidUsage = () => message.channel.send(this.options.messages.invalidUsage.replace('{usage}', `${prefix}${command.name} ${command.usage}`));
 
 		if (!args.length && command.usage.includes('<'))
 			return invalidUsage();
