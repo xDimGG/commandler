@@ -28,7 +28,7 @@ class HelpCommand extends Command {
 					embed.addField('Last Used At', last.createdAt.toUTCString(), true);
 
 				if (lastAuthor)
-					embed.addField('Last Used By You At', lastAuthor.toUTCString(), true);
+					embed.addField('Last Used By You At', lastAuthor.createdAt.toUTCString(), true);
 
 				embed.addField('Uses', count.toLocaleString(), true);
 			}
