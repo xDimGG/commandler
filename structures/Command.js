@@ -60,15 +60,15 @@ class Command {
 
 	findBoolean(args) {
 		const arg = args.findIndex(a => p.has(a.toLowerCase()));
-		if (!arg) return;
-		args.splice(arg, 1);
+		if (arg === undefined) return;
+		const a = args.splice(arg, 1)[0];
 
-		return args[arg];
+		return t.has(a);
 	}
 
 	findNumber(args) {
 		const arg = args.findIndex(a => /^\d+$/.test(a));
-		if (!arg) return false;
+		if (arg === undefined) return false;
 
 		return Number(args.splice(arg, 1)[0]);
 	}
