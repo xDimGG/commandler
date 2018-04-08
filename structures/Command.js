@@ -69,9 +69,8 @@ class Command {
 	findNumber(args) {
 		const arg = args.findIndex(a => /^\d+$/.test(a));
 		if (!arg) return false;
-		args.splice(arg, 1);
 
-		return Number(args[arg]);
+		return Number(args.splice(arg, 1)[0]);
 	}
 
 	code(string, language = '') {
